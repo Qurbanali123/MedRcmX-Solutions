@@ -1,0 +1,354 @@
+"use client";
+import Link from "next/link";
+import Image from "next/image";
+import {
+  ArrowRight,
+  Target,
+  Eye,
+  Heart,
+  Award,
+  Users,
+  TrendingUp,
+  CheckCircle2,
+  Star,
+} from "lucide-react";
+
+const teamMembers = [
+  {
+    name: " Mehfooz",
+    designation: "Founder and CEO ",
+    role: "RCM Expert and Credential Specialist",
+    bio: "RCM Expert and Credential Specialist with proven expertise in managing end-to-end revenue cycle operations, including medical billing, coding, and provider credentialing. Skilled in optimizing reimbursement processes, reducing claim denials, and ensuring compliance with industry standards, while maintaining accuracy and efficiency.",
+    image: "/f.png",
+  },
+  {
+    name: "Ahmed",
+    designation: "COO",
+    role: "SEO Expert",
+    bio: "RCM Expert and Virtual Assistant with strong experience in medical billing, revenue cycle management, and administrative support. Skilled in streamlining workflows, managing claims, and providing efficient virtual assistance to enhance productivity and ensure smooth business operations.",
+    image: "/COO.jpeg",
+  },
+  {
+    name: "Qurban Ali",
+    designation: "Developer",
+    role: "Web Developer and SEO Expert",
+    bio: "Website Developer and SEO Expert with expertise in building high-performing, user-friendly websites optimized for search engines. Skilled in improving website visibility, driving organic traffic, and creating responsive designs that deliver real business results.",
+    image: "/Devloper.png",
+  },
+  {
+    name: "Hina Malik",
+    designation: "Manager",
+    role: "Biller",
+    bio: "Professional medical biller ensuring accurate claims processing.",
+    image: "/lady.jpg",
+  }
+];
+const milestones = [
+  { year: "2018", title: "Founded", desc: "Started with a vision to simplify medical billing for independent practices." },
+  { year: "2020", title: "100 Clients", desc: "Reached our first major milestone serving 100+ healthcare providers." },
+  { year: "20222", title: "Tech Platform", desc: "Launched proprietary RCM platform with real-time analytics." },
+  { year: "2023", title: "HIPAA 5010", desc: "Achieved full compliance with enhanced HIPAA EDI standards." },
+  { year: "20225", title: "1,000+ Clients", desc: "Serving over 1,000 providers nationwide across all specialties." },
+  { year: "2026", title: "AI Integration", desc: "Integrated AI-powered coding and claim scrubbing technology." },
+];
+
+const values = [
+  {
+    icon: Target,
+    title: "Accuracy First",
+    desc: "We obsess over billing accuracy, maintaining 99.9% clean claim rates that maximize your revenue.",
+    color: "#27D083",
+  },
+  {
+    icon: Heart,
+    title: "Client-Centric",
+    desc: "Every decision we make is rooted in what's best for your practice and your patients.",
+    color: "#38F8FF",
+  },
+  {
+    icon: Eye,
+    title: "Full Transparency",
+    desc: "Real-time dashboards and monthly reports keep you fully informed about your financial health.",
+    color: "#27D083",
+  },
+  {
+    icon: Award,
+    title: "Excellence",
+    desc: "Continuous improvement and training ensure our team stays ahead of industry changes.",
+    color: "#38F8FF",
+  },
+];
+
+export default function AboutPage() {
+  return (
+    <div className="min-h-screen pt-20">
+      {/* Hero */}
+      <section 
+        className="relative py-24 overflow-hidden section-bg-image"
+        style={{ backgroundImage: "url('https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80&w=2070')" }}
+      >
+        <div className="bg-overlay" />
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="tag-pill inline-block px-3 py-1 rounded-full mb-6 bg-emerald/10 text-emerald font-bold">
+            ABOUT US
+          </div>
+          <h1
+            className="text-5xl md:text-6xl lg:text-7xl font-black mb-6 leading-tight text-white"
+            style={{ fontFamily: "Syne, sans-serif" }}
+          >
+            Redefining{" "}
+            <span className="gradient-text">Medical Billing</span>
+            <br />
+            Since 2018
+          </h1>
+          <p className="text-white/60 text-xl max-w-2xl mx-auto leading-relaxed font-medium">
+            MedRCMx Solutions was built on a simple belief: healthcare providers
+            should focus on healing, not chasing payments. We handle the rest.
+          </p>
+        </div>
+      </section>
+
+      {/* Mission / Vision */}
+      <section className="py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="glass-card rounded-3xl p-10 border border-[#27D083]/20 card-3d group">
+              <div className="w-14 h-14 rounded-2xl bg-[#27D083]/15 border border-[#27D083]/30 flex items-center justify-center mb-6">
+                <Target className="w-7 h-7 text-[#27D083]" />
+              </div>
+              <h3
+                className="text-2xl font-black text-white mb-4"
+                style={{ fontFamily: "Syne, sans-serif" }}
+              >
+                Our <span className="gradient-text">Mission</span>
+              </h3>
+              <p className="text-white/60 leading-relaxed">
+                To empower healthcare providers with intelligent, transparent, and
+                results-driven revenue cycle management solutions that maximize
+                collections, reduce denials, and free clinicians to focus on what
+                matters most — patient care.
+              </p>
+            </div>
+
+            <div className="glass-card rounded-3xl p-10 border border-[#38F8FF]/20 card-3d group">
+              <div className="w-14 h-14 rounded-2xl bg-[#38F8FF]/15 border border-[#38F8FF]/30 flex items-center justify-center mb-6">
+                <Eye className="w-7 h-7 text-[#38F8FF]" />
+              </div>
+              <h3
+                className="text-2xl font-black text-white mb-4"
+                style={{ fontFamily: "Syne, sans-serif" }}
+              >
+                Our <span style={{ color: "#38F8FF" }}>Vision</span>
+              </h3>
+              <p className="text-white/60 leading-relaxed">
+                To become the most trusted revenue cycle management partner in
+                North America — where every healthcare provider, regardless of
+                size or specialty, has access to world-class billing expertise and
+                technology.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Stats strip */}
+      <section className="py-12 bg-gradient-to-r from-[#27D083]/10 via-transparent to-[#38F8FF]/10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+            {[
+              { icon: TrendingUp, val: "$200M+", label: "Revenue Recovered" },
+              { icon: Users, val: "1,200+", label: "Providers Served" },
+              { icon: Award, val: "8+", label: "Years Experience" },
+              { icon: Star, val: "4.9/5", label: "Client Satisfaction" },
+            ].map(({ icon: Icon, val, label }, i) => (
+              <div key={i} className="space-y-2">
+                <div className="w-10 h-10 mx-auto rounded-xl bg-[#27D083]/10 border border-[#27D083]/20 flex items-center justify-center">
+                  <Icon className="w-5 h-5 text-[#27D083]" />
+                </div>
+                <div className="text-3xl font-black gradient-text" style={{ fontFamily: "Syne, sans-serif" }}>{val}</div>
+                <div className="text-sm text-white/40">{label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Our Story */}
+      <section className="py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div>
+              <div className="tag-pill inline-block px-3 py-1 rounded-full mb-4">
+                OUR JOURNEY
+              </div>
+              <h2
+                className="text-4xl md:text-5xl font-black mb-6 section-heading"
+                style={{ fontFamily: "Syne, sans-serif" }}
+              >
+                From a Small Team to{" "}
+                <span className="gradient-text">Industry Leader</span>
+              </h2>
+              <p className="text-white/60 leading-relaxed mb-6">
+                MedRCMx Solutions was founded in 2018 by Dr. Michael Chen, who
+                experienced firsthand the frustration of revenue leakage while
+                running his own practice. He assembled a team of billing experts,
+                certified coders, and technology specialists to build a better
+                solution.
+              </p>
+              <p className="text-white/60 leading-relaxed mb-8">
+                Today, we proudly serve over 1,200 healthcare providers across
+                40+ specialties in all 50 states, processing millions of claims
+                annually with an industry-leading 98.2% first-pass clean claim
+                rate.
+              </p>
+              <ul className="space-y-3">
+                {[
+                  "AAPC & AHIMA Certified Coding Team",
+                  "SOC 2 Type II & HIPAA Compliant",
+                  "Named Top RCM Company 2023 & 2024",
+                  "BBB A+ Accredited Business",
+                ].map((item, i) => (
+                  <li key={i} className="flex items-center gap-3 text-sm text-white/70">
+                    <CheckCircle2 className="w-4 h-4 text-[#27D083] flex-shrink-0" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Timeline */}
+            <div className="relative">
+              <div className="absolute left-6 top-0 bottom-0 w-px bg-gradient-to-b from-[#27D083] via-[#38F8FF] to-[#27D083]/20" />
+              <div className="space-y-6 pl-16">
+                {milestones.map(({ year, title, desc }, i) => (
+                  <div key={i} className="relative">
+                    <div className="absolute -left-10 top-2 w-4 h-4 rounded-full border-2 border-[#27D083] bg-[#091e35]"
+                      style={{ borderColor: i % 2 === 0 ? "#27D083" : "#38F8FF" }}
+                    />
+                    <div className="glass-card rounded-2xl p-5 border border-white/5 hover:border-[#27D083]/20 transition-all">
+                      <div
+                        className="text-xs font-black mb-1 gradient-text"
+                        style={{ fontFamily: "Space Mono, monospace" }}
+                      >
+                        {year}
+                      </div>
+                      <div
+                        className="text-base font-700 text-white mb-1"
+                        style={{ fontFamily: "Syne, sans-serif" }}
+                      >
+                        {title}
+                      </div>
+                      <p className="text-xs text-white/40">{desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Values */}
+      <section className="py-20 bg-section-gradient">
+        
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ">
+
+          <div className="text-center mb-14">
+            <div className="tag-pill inline-block px-3 py-1 rounded-full mb-6 bg-emerald/10 text-emerald font-bold">
+              CORE VALUES
+            </div>
+            <h2
+              className="text-4xl md:text-5xl font-black section-heading-center"
+              style={{ fontFamily: "Syne, sans-serif" }}
+            >
+             <span className="gradient-text">  Built on Integrity</span>
+            </h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {values.map(({ icon: Icon, title, desc, color }, i) => (
+              <div key={i} className="bg-[#091e35] rounded-3xl p-7 card-3d text-center group ">
+                <div
+                  className="w-14 h-14 rounded-full mx-auto mb-5 flex items-center justify-center group-hover:scale-110 transition-transform "
+                  style={{ background: `${color}15`, border: `2px solid ${color}30` }}
+                >
+                  <Icon className="w-7 h-7" style={{ color }} />
+                </div>
+                <h3 className="text-lg font-black text-white mb-3" style={{ fontFamily: "Syne, sans-serif" }}>{title}</h3>
+                <p className="text-white/50 text-sm leading-relaxed">{desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Team */}
+      <section className="py-20">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+  {teamMembers.map(({ name, designation, role, bio, image }, i) => (
+    <div
+      key={i}
+      className="bg-[#091e35] rounded-3xl p-7 text-center shadow-lg hover:-translate-y-2 hover:shadow-blue-500/20 transition duration-300"
+    >
+
+      {/* Gradient Border Wrapper */}
+      <div className="w-32 h-32 mx-auto mb-5 p-[3px] rounded-full bg-gradient-to-r from-blue-500 via-cyan-400 to-blue-600">
+        
+        {/* Image */}
+ <img
+  src={image}
+  alt={name}
+  className="w-full h-full object-cover object-center rounded-full"
+  style={{
+    imageRendering: "auto",
+    WebkitBackfaceVisibility: "hidden",
+    transform: "translateZ(0)"
+  }}
+/>
+
+      </div>
+
+      {/* Name */}
+      <h4 className="text-lg font-bold text-white mb-1">
+        {name}
+      </h4>
+
+      {/* Designation */}
+      <div className="text-sm text-blue-400 font-semibold">
+        {designation}
+      </div>
+
+      {/* Role */}
+      <div className="text-xs text-gray-300 mb-2">
+        {role}
+      </div>
+
+      {/* Bio */}
+      <p className="text-xs text-white/50">
+        {bio}
+      </p>
+
+    </div>
+  ))}
+</div>
+      </section>
+
+      {/* CTA */}
+      <section className="py-16">
+        <div className="max-w-4xl mx-auto px-4 text-center">
+          <h2 className="text-3xl md:text-4xl font-black mb-4" style={{ fontFamily: "Syne, sans-serif" }}>
+            Partner with <span className="gradient-text">MedRCMx</span> Today
+          </h2>
+          <p className="text-white/50 mb-8">Join 1,200+ healthcare providers maximizing their revenue.</p>
+          <Link
+            href="/contact"
+            className="btn-primary px-10 py-4 rounded-2xl text-base inline-flex items-center gap-2 group"
+          >
+            <span>Start Your Free Audit</span>
+            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+          </Link>
+        </div>
+      </section>
+    </div>
+  );
+}
