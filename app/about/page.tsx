@@ -18,11 +18,11 @@ const teamMembers = [
     name: " Mehfooz",
     designation: "Founder and CEO ",
     role: "RCM Expert and Credential Specialist",
-    bio: "RCM Expert and Credential Specialist with proven expertise in managing end-to-end revenue cycle operations, including medical billing, coding, and provider credentialing. Skilled in optimizing reimbursement processes, reducing claim denials, and ensuring compliance with industry standards, while maintaining accuracy and efficiency.",
+    bio: "RCM Expert and Credential Specialist with  proven expertise in managing end-to-end revenue cycle operations, including medical billing, coding, and provider credentialing. Skilled in optimizing reimbursement processes, reducing claim denials, and ensuring compliance with industry standards, while maintaining accuracy and efficiency.",
     image: "/f.png",
   },
   {
-    name: "Akbar",
+    name: "Akbar Hussain",
     designation: "COO",
     role: "SEO Expert",
     bio: "RCM Expert and Virtual Assistant with strong experience in medical billing, revenue cycle management, and administrative support. Skilled in streamlining workflows, managing claims, and providing efficient virtual assistance to enhance productivity and ensure smooth business operations.",
@@ -31,16 +31,16 @@ const teamMembers = [
    {
     name: "Shamshad Nazi",
     designation: "Manager",
-    role: "Biller",
-    bio: "Professional medical biller ensuring accurate claims processing.",
+    role: "HR and Management",
+    bio: "Experienced HR and management professional responsible for leading teams, managing employee relations, and overseeing recruitment processes. Skilled in workflow optimization and ensuring organizational efficiency.",
     image: "/manager.png",
   },
    {
     name: "Kamran Nazir",
     designation: "Team Lead",
     role: "Medical Biller and Credentialing Specialist",
-    bio: "Medical Billing & Credentialing Team Lead with proven experience in managing end-to-end revenue cycle operations and provider credentialing processes. Skilled in leading teams, optimizing billing workflows, and ensuring accurate claim submissions, timely reimbursements, and compliance with healthcare regulations. Experienced in insurance verification, denial management, and maintaining strong relationships with payers. Adept at improving team performance, streamlining processes, and driving overall operational efficiency",
-    image: "/teamlead.jpeg",
+    bio: "Medical Billing & Credentialing Team Lead with proven experience in managing end-to-end revenue cycle operations and provider credentialing processes. Skilled in leading teams and ensuring accurate claim submissions and compliance with healthcare regulations. Adept at improving team performance, streamlining processes, and driving overall operational efficiency",
+    image: "/team.png",
   },
   {
     name: "Qurban Ali",
@@ -290,57 +290,103 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Team */}
-      <section className="py-20">
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-  {teamMembers.map(({ name, designation, role, bio, image }, i) => (
-    <div
-      key={i}
-      className="bg-[#091e35] rounded-3xl p-7 text-center shadow-lg hover:-translate-y-2 hover:shadow-blue-500/20 transition duration-300"
+<section className="py-20 overflow-hidden">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-10">
+    {/* Heading */}
+    <h2
+      className="text-4xl md:text-5xl font-black mb-2 gradient-text"
+      style={{ fontFamily: "Syne, sans-serif" }}
     >
+      Meet Our <span className="gradient-text">Team</span>
+    </h2>
+    {/* Subtitle */}
+    <p className="text-white/60 text-lg max-w-2xl mx-auto">
+      Our experts in medical billing, credentialing, HR, and development work together to streamline your revenue cycle management.
+    </p>
+  </div>
 
-      {/* Gradient Border Wrapper */}
-      <div className="w-32 h-32 mx-auto mb-5 p-[3px] rounded-full bg-gradient-to-r from-blue-500 via-cyan-400 to-blue-600">
-        
-        {/* Image */}
- <img
-  src={image}
-  alt={name}
-  className="w-full h-full object-cover object-center rounded-full"
-  style={{
-    imageRendering: "auto",
-    WebkitBackfaceVisibility: "hidden",
-    transform: "translateZ(0)"
-  }}
-/>
+  <div
+    className="relative w-full overflow-hidden"
+    // Pause animation on desktop hover
+    onMouseEnter={(e) => e.currentTarget.firstChild.style.animationPlayState = "paused"}
+    onMouseLeave={(e) => e.currentTarget.firstChild.style.animationPlayState = "running"}
+    // Pause animation on mobile touch
+    onTouchStart={(e) => e.currentTarget.firstChild.style.animationPlayState = "paused"}
+    onTouchEnd={(e) => e.currentTarget.firstChild.style.animationPlayState = "running"}
+  >
+    {/* Scrolling wrapper */}
+    <div className="flex space-x-6 animate-scroll">
+      {teamMembers.concat(teamMembers).map(({ name, designation, role, bio, image }, i) => (
+        <div
+          key={i}
+          className="team-card bg-[#091e35] rounded-3xl p-7 text-center shadow-lg flex-shrink-0 w-[250px] sm:w-[220px] xs:w-[180px]"
+        >
+          {/* Gradient Border Wrapper */}
+          <div className="w-32 h-32 mx-auto mb-5 p-[3px] rounded-full bg-gradient-to-r from-blue-500 via-cyan-400 to-blue-600">
+            <img
+              src={image}
+              alt={name}
+              className="w-full h-full object-cover object-center rounded-full"
+              style={{
+                imageRendering: "auto",
+                WebkitBackfaceVisibility: "hidden",
+                transform: "translateZ(0)",
+              }}
+            />
+          </div>
 
-      </div>
+          {/* Name */}
+          <h4 className="text-lg font-bold text-white mb-1">{name}</h4>
 
-      {/* Name */}
-      <h4 className="text-lg font-bold text-white mb-1">
-        {name}
-      </h4>
+          {/* Designation */}
+          <div className="text-sm text-blue-400 font-semibold">{designation}</div>
 
-      {/* Designation */}
-      <div className="text-sm text-blue-400 font-semibold">
-        {designation}
-      </div>
+          {/* Role */}
+          <div className="text-xs text-gray-300 mb-2">{role}</div>
 
-      {/* Role */}
-      <div className="text-xs text-gray-300 mb-2">
-        {role}
-      </div>
-
-      {/* Bio */}
-      <p className="text-xs text-white/50">
-        {bio}
-      </p>
-
+          {/* Bio (clamped to 3 lines) */}
+          <p className="text-xs text-white/50 line-clamp-3">{bio}</p>
+        </div>
+      ))}
     </div>
-  ))}
-</div>
-      </section>
+  </div>
 
+  <style jsx>{`
+    @keyframes scroll {
+      0% {
+        transform: translateX(0%);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+
+    .animate-scroll {
+      animation: scroll 40s linear infinite;
+      display: flex;
+    }
+
+    /* Clamp bio to 3 lines to keep cards uniform */
+    .line-clamp-3 {
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    @media (max-width: 640px) {
+      .team-card {
+        width: 180px;
+      }
+    }
+
+    @media (min-width: 641px) and (max-width: 1024px) {
+      .team-card {
+        width: 220px;
+      }
+    }
+  `}</style>
+</section>
       {/* CTA */}
       <section className="py-16">
         <div className="max-w-4xl mx-auto px-4 text-center">

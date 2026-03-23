@@ -25,9 +25,9 @@ const contactMethods = [
   {
     icon: Mail,
     title: "Email Us",
-    value: "info@medrcmx.com",
+    value: "info@medrcmxsolutions.com",
     sub: "Response within 2 hours",
-    href: "mailto:info@medrcmx.com",
+    href: "mailto:info@medrcmxsolutions.com",
     color: "#38F8FF",
   },
   {
@@ -82,10 +82,34 @@ export default function ContactPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    // Simulate form submission
-    await new Promise((res) => setTimeout(res, 1500));
-    setLoading(false);
-    setSubmitted(true);
+
+    try {
+      // You can use a service like Web3Forms, Formspree, or your own API route
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: "YOUR_ACCESS_KEY_HERE", // Replace with your Web3Forms access key
+          ...formData,
+          subject: "New Free Audit Request - MedRCMx Solutions",
+          from_name: `${formData.firstName} ${formData.lastName}`,
+          to_email: "info@medrcmxsolutions.com", // Target email
+        }),
+      });
+
+      if (response.ok) {
+        setSubmitted(true);
+      } else {
+        console.error("Form submission failed");
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleChange = (
@@ -372,8 +396,8 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <div className="text-xs text-white/30 mb-0.5">Email</div>
-                      <a href="mailto:info@medrcmx.com" className="text-sm text-white/70 hover:text-[#27D083] transition-colors">
-                        info@medrcmx.com
+                      <a href="mailto:info@medrcmxsolutions.com" className="text-sm text-white/70 hover:text-[#27D083] transition-colors">
+                        info@medrcmxsolutions.com
                       </a>
                     </div>
                   </div>
