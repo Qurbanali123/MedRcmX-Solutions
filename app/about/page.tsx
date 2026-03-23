@@ -15,40 +15,40 @@ import {
 
 const teamMembers = [
   {
-    name: " Mehfooz",
-    designation: "Founder and CEO ",
-    role: "RCM Expert and Credential Specialist",
-    bio: "RCM Expert and Credential Specialist with  proven expertise in managing end-to-end revenue cycle operations, including medical billing, coding, and provider credentialing. Skilled in optimizing reimbursement processes, reducing claim denials, and ensuring compliance with industry standards, while maintaining accuracy and efficiency.",
-    image: "/f.png",
-  },
-  {
-    name: "Akbar Hussain",
-    designation: "COO",
-    role: "SEO Expert",
-    bio: "RCM Expert and Virtual Assistant with strong experience in medical billing, revenue cycle management, and administrative support. Skilled in streamlining workflows, managing claims, and providing efficient virtual assistance to enhance productivity and ensure smooth business operations.",
-    image: "/COO.jpeg",
-  },
-   {
-    name: "Shamshad Nazi",
-    designation: "Manager",
-    role: "HR and Management",
-    bio: "Experienced HR and management professional responsible for leading teams, managing employee relations, and overseeing recruitment processes. Skilled in workflow optimization and ensuring organizational efficiency.",
-    image: "/manager.png",
-  },
-   {
-    name: "Kamran Nazir",
-    designation: "Team Lead",
-    role: "Medical Biller and Credentialing Specialist",
-    bio: "Medical Billing & Credentialing Team Lead with proven experience in managing end-to-end revenue cycle operations and provider credentialing processes. Skilled in leading teams and ensuring accurate claim submissions and compliance with healthcare regulations. Adept at improving team performance, streamlining processes, and driving overall operational efficiency",
-    image: "/team.png",
-  },
-  {
-    name: "Qurban Ali",
-    designation: "Developer",
-    role: "Web Developer and SEO Expert",
-    bio: "Website Developer and SEO Expert with expertise in building high-performing, user-friendly websites optimized for search engines. Skilled in improving website visibility, driving organic traffic, and creating responsive designs that deliver real business results.",
-    image: "/Devloper.png",
-  }
+  name: "Mehfooz",
+  designation: "Founder and CEO",
+  role: "RCM Expert and Credential Specialist",
+  bio: "RCM expert specializing in medical billing, coding, and provider credentialing with a focus on accuracy and efficient revenue cycle management.",
+  image: "/f.png",
+},
+{
+  name: "Akbar Hussain",
+  designation: "COO",
+  role: "SEO Expert",
+  bio: "Experienced in medical billing and virtual assistance, focused on optimizing workflows and improving operational efficiency.",
+  image: "/COO.jpeg",
+},
+{
+  name: "Shamshad Nazi",
+  designation: "Manager",
+  role: "HR and Management",
+  bio: "HR professional skilled in team leadership, recruitment, and improving organizational performance.",
+  image: "/manager.png",
+},
+{
+  name: "Kamran Nazir",
+  designation: "Team Lead",
+  role: "Medical Biller and Credentialing Specialist",
+  bio: "Team lead with expertise in billing, credentialing, and ensuring accurate claims with strong compliance standards.",
+  image: "/team.png",
+},
+{
+  name: "Qurban Ali",
+  designation: "Developer",
+  role: "Web Developer and SEO Expert",
+  bio: "Web developer focused on building responsive websites and improving SEO for better visibility and performance.",
+  image: "/Devloper.png",
+}
  
 ];
 const milestones = [
@@ -299,6 +299,7 @@ export default function AboutPage() {
     >
       Meet Our <span className="gradient-text">Team</span>
     </h2>
+
     {/* Subtitle */}
     <p className="text-white/60 text-lg max-w-2xl mx-auto">
       Our experts in medical billing, credentialing, HR, and development work together to streamline your revenue cycle management.
@@ -307,23 +308,21 @@ export default function AboutPage() {
 
   <div
     className="relative w-full overflow-hidden"
-    // Pause animation on desktop hover
     onMouseEnter={(e) => {
-      const scrollWrapper = e.currentTarget.firstElementChild as HTMLElement | null;
-      if (scrollWrapper) scrollWrapper.style.animationPlayState = "paused";
+      const el = e.currentTarget.firstElementChild as HTMLElement | null;
+      if (el) el.style.animationPlayState = "paused";
     }}
     onMouseLeave={(e) => {
-      const scrollWrapper = e.currentTarget.firstElementChild as HTMLElement | null;
-      if (scrollWrapper) scrollWrapper.style.animationPlayState = "running";
+      const el = e.currentTarget.firstElementChild as HTMLElement | null;
+      if (el) el.style.animationPlayState = "running";
     }}
-    // Pause animation on mobile touch
     onTouchStart={(e) => {
-      const scrollWrapper = e.currentTarget.firstElementChild as HTMLElement | null;
-      if (scrollWrapper) scrollWrapper.style.animationPlayState = "paused";
+      const el = e.currentTarget.firstElementChild as HTMLElement | null;
+      if (el) el.style.animationPlayState = "paused";
     }}
     onTouchEnd={(e) => {
-      const scrollWrapper = e.currentTarget.firstElementChild as HTMLElement | null;
-      if (scrollWrapper) scrollWrapper.style.animationPlayState = "running";
+      const el = e.currentTarget.firstElementChild as HTMLElement | null;
+      if (el) el.style.animationPlayState = "running";
     }}
   >
     {/* Scrolling wrapper */}
@@ -331,9 +330,9 @@ export default function AboutPage() {
       {teamMembers.concat(teamMembers).map(({ name, designation, role, bio, image }, i) => (
         <div
           key={i}
-          className="team-card bg-[#091e35] rounded-3xl p-7 text-center shadow-lg flex-shrink-0 w-[250px] sm:w-[220px] xs:w-[180px]"
+          className="team-card bg-[#091e35] rounded-3xl p-7 flex-shrink-0 w-[300px] sm:w-[260px] shadow-[0_8px_25px_rgba(0,0,0,0.35)] hover:shadow-[0_12px_35px_rgba(0,150,255,0.25)] transition-all duration-300"
         >
-          {/* Gradient Border Wrapper */}
+          {/* Image */}
           <div className="w-32 h-32 mx-auto mb-5 p-[3px] rounded-full bg-gradient-to-r from-blue-500 via-cyan-400 to-blue-600">
             <img
               src={image}
@@ -348,22 +347,27 @@ export default function AboutPage() {
           </div>
 
           {/* Name */}
-          <h4 className="text-lg font-bold text-white mb-1">{name}</h4>
+          <h4 className="text-lg font-bold text-white mb-1 text-center">{name}</h4>
 
           {/* Designation */}
-          <div className="text-sm text-blue-400 font-semibold">{designation}</div>
+          <div className="text-sm text-blue-400 font-semibold text-center">
+            {designation}
+          </div>
 
           {/* Role */}
-          <div className="text-xs text-gray-300 mb-2">{role}</div>
+          <div className="text-xs text-gray-300 mb-3 text-center">
+            {role}
+          </div>
 
-          {/* Bio (clamped to 3 lines) */}
-          <p className="text-xs text-white/50 line-clamp-3">{bio}</p>
+          {/* Bio (LEFT ALIGNED for better readability) */}
+          <p className="text-sm text-white/60 leading-relaxed text-center">
+            {bio}
+          </p>
         </div>
       ))}
     </div>
   </div>
 
-  {/* Tailwind + custom CSS */}
   <style jsx>{`
     @keyframes scroll {
       0% {
@@ -379,30 +383,25 @@ export default function AboutPage() {
       display: flex;
     }
 
-    /* Clamp bio to 3 lines to keep cards uniform */
-    .line-clamp-3 {
-      display: -webkit-box;
-      -webkit-line-clamp: 3;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-    }
-
-    /* Responsive card widths */
+    /* Faster on mobile */
     @media (max-width: 640px) {
+      .animate-scroll {
+        animation: scroll 15s linear infinite;
+      }
       .team-card {
-        width: 180px;
+        width: 240px;
       }
     }
 
     @media (min-width: 641px) and (max-width: 1024px) {
       .team-card {
-        width: 220px;
+        width: 260px;
       }
     }
 
     @media (min-width: 1025px) {
       .team-card {
-        width: 250px;
+        width: 300px;
       }
     }
   `}</style>
