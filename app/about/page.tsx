@@ -289,18 +289,14 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-
 <section className="py-20 overflow-hidden">
   <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-10">
-    {/* Heading */}
     <h2
       className="text-4xl md:text-5xl font-black mb-2 gradient-text"
       style={{ fontFamily: "Syne, sans-serif" }}
     >
       Meet Our <span className="gradient-text">Team</span>
     </h2>
-
-    {/* Subtitle */}
     <p className="text-white/60 text-lg max-w-2xl mx-auto">
       Our experts in medical billing, credentialing, HR, and development work together to streamline your revenue cycle management.
     </p>
@@ -309,60 +305,69 @@ export default function AboutPage() {
   <div
     className="relative w-full overflow-hidden"
     onMouseEnter={(e) => {
-      const el = e.currentTarget.firstElementChild as HTMLElement | null;
-      if (el) el.style.animationPlayState = "paused";
+      const el = e.currentTarget.querySelector('.scroll-wrapper') as HTMLElement | null;
+      if (el) el.style.animationPlayState = 'paused';
     }}
     onMouseLeave={(e) => {
-      const el = e.currentTarget.firstElementChild as HTMLElement | null;
-      if (el) el.style.animationPlayState = "running";
-    }}
-    onTouchStart={(e) => {
-      const el = e.currentTarget.firstElementChild as HTMLElement | null;
-      if (el) el.style.animationPlayState = "paused";
-    }}
-    onTouchEnd={(e) => {
-      const el = e.currentTarget.firstElementChild as HTMLElement | null;
-      if (el) el.style.animationPlayState = "running";
+      const el = e.currentTarget.querySelector('.scroll-wrapper') as HTMLElement | null;
+      if (el) el.style.animationPlayState = 'running';
     }}
   >
-    {/* Scrolling wrapper */}
-    <div className="flex space-x-6 animate-scroll">
+    <div
+      className="scroll-wrapper flex space-x-6"
+      style={{ width: 'max-content' }}
+      ref={(el) => {
+        if (!el) return;
+        let isDown = false;
+        let startX = 0;
+        let scrollLeft = 0;
+
+        const startDrag = (e: TouchEvent) => {
+          isDown = true;
+          startX = e.touches[0].pageX - el.offsetLeft;
+          scrollLeft = el.scrollLeft;
+          el.style.animationPlayState = 'paused';
+        };
+
+        const moveDrag = (e: TouchEvent) => {
+          if (!isDown) return;
+          e.preventDefault();
+          const x = e.touches[0].pageX - el.offsetLeft;
+          const walk = (x - startX) * 1.5;
+          el.scrollLeft = scrollLeft - walk;
+        };
+
+        const endDrag = () => {
+          isDown = false;
+          el.style.animationPlayState = 'running';
+        };
+
+        el.addEventListener('touchstart', startDrag, { passive: false });
+        el.addEventListener('touchmove', moveDrag, { passive: false });
+        el.addEventListener('touchend', endDrag);
+      }}
+    >
       {teamMembers.concat(teamMembers).map(({ name, designation, role, bio, image }, i) => (
         <div
           key={i}
-          className="team-card bg-[#091e35] rounded-3xl p-7 flex-shrink-0 w-[300px] sm:w-[260px] shadow-[0_8px_25px_rgba(0,0,0,0.35)] hover:shadow-[0_12px_35px_rgba(0,150,255,0.25)] transition-all duration-300"
+          className="team-card bg-[#091e35] rounded-3xl p-7 flex-shrink-0 w-[300px] sm:w-[260px] xs:w-[220px] shadow-[0_8px_25px_rgba(0,0,0,0.35)] hover:shadow-[0_12px_35px_rgba(0,150,255,0.25)] transition-all duration-300"
         >
-          {/* Image */}
           <div className="w-32 h-32 mx-auto mb-5 p-[3px] rounded-full bg-gradient-to-r from-blue-500 via-cyan-400 to-blue-600">
             <img
               src={image}
               alt={name}
               className="w-full h-full object-cover object-center rounded-full"
               style={{
-                imageRendering: "auto",
-                WebkitBackfaceVisibility: "hidden",
-                transform: "translateZ(0)",
+                imageRendering: 'auto',
+                WebkitBackfaceVisibility: 'hidden',
+                transform: 'translateZ(0)',
               }}
             />
           </div>
-
-          {/* Name */}
           <h4 className="text-lg font-bold text-white mb-1 text-center">{name}</h4>
-
-          {/* Designation */}
-          <div className="text-sm text-blue-400 font-semibold text-center">
-            {designation}
-          </div>
-
-          {/* Role */}
-          <div className="text-xs text-gray-300 mb-3 text-center">
-            {role}
-          </div>
-
-          {/* Bio (LEFT ALIGNED for better readability) */}
-          <p className="text-sm text-white/60 leading-relaxed text-center">
-            {bio}
-          </p>
+          <div className="text-sm text-blue-400 font-semibold text-center">{designation}</div>
+          <div className="text-xs text-gray-300 mb-3 text-center">{role}</div>
+          <p className="text-sm text-white/60 leading-relaxed text-center">{bio}</p>
         </div>
       ))}
     </div>
@@ -371,25 +376,25 @@ export default function AboutPage() {
   <style jsx>{`
     @keyframes scroll {
       0% {
-        transform: translateX(0%);
+        transform: translateX(0);
       }
       100% {
         transform: translateX(-50%);
       }
     }
 
-    .animate-scroll {
-      animation: scroll 40s linear infinite;
+    .scroll-wrapper {
       display: flex;
+      animation: scroll 40s linear infinite;
     }
 
-    /* Faster on mobile */
+    /* Mobile faster scroll */
     @media (max-width: 640px) {
-      .animate-scroll {
-        animation: scroll 15s linear infinite;
+      .scroll-wrapper {
+        animation: scroll 20s linear infinite;
       }
       .team-card {
-        width: 240px;
+        width: 220px;
       }
     }
 
