@@ -308,11 +308,23 @@ export default function AboutPage() {
   <div
     className="relative w-full overflow-hidden"
     // Pause animation on desktop hover
-    onMouseEnter={(e) => e.currentTarget.firstChild.style.animationPlayState = "paused"}
-    onMouseLeave={(e) => e.currentTarget.firstChild.style.animationPlayState = "running"}
+    onMouseEnter={(e) => {
+      const scrollWrapper = e.currentTarget.firstElementChild as HTMLElement | null;
+      if (scrollWrapper) scrollWrapper.style.animationPlayState = "paused";
+    }}
+    onMouseLeave={(e) => {
+      const scrollWrapper = e.currentTarget.firstElementChild as HTMLElement | null;
+      if (scrollWrapper) scrollWrapper.style.animationPlayState = "running";
+    }}
     // Pause animation on mobile touch
-    onTouchStart={(e) => e.currentTarget.firstChild.style.animationPlayState = "paused"}
-    onTouchEnd={(e) => e.currentTarget.firstChild.style.animationPlayState = "running"}
+    onTouchStart={(e) => {
+      const scrollWrapper = e.currentTarget.firstElementChild as HTMLElement | null;
+      if (scrollWrapper) scrollWrapper.style.animationPlayState = "paused";
+    }}
+    onTouchEnd={(e) => {
+      const scrollWrapper = e.currentTarget.firstElementChild as HTMLElement | null;
+      if (scrollWrapper) scrollWrapper.style.animationPlayState = "running";
+    }}
   >
     {/* Scrolling wrapper */}
     <div className="flex space-x-6 animate-scroll">
@@ -351,6 +363,7 @@ export default function AboutPage() {
     </div>
   </div>
 
+  {/* Tailwind + custom CSS */}
   <style jsx>{`
     @keyframes scroll {
       0% {
@@ -374,6 +387,7 @@ export default function AboutPage() {
       overflow: hidden;
     }
 
+    /* Responsive card widths */
     @media (max-width: 640px) {
       .team-card {
         width: 180px;
@@ -383,6 +397,12 @@ export default function AboutPage() {
     @media (min-width: 641px) and (max-width: 1024px) {
       .team-card {
         width: 220px;
+      }
+    }
+
+    @media (min-width: 1025px) {
+      .team-card {
+        width: 250px;
       }
     }
   `}</style>
