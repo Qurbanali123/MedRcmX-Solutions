@@ -1,10 +1,14 @@
-# Fix Next.js Dev Server Error
+# GitHub Large File Fix Progress
 
-## Steps:
-- [x] 1. Run `npm install` to install local stable Next.js 14.2.5 and dependencies. (Complete)
-- [x] 2. Run `npm run dev` to start development server using local version. (Running on local Next 14.2.5, original Turbopack/npm registry error FIXED!)
-- [x] 3. Verify server starts successfully on http://localhost:3000 without spawn/npm registry error. (Success - SWC warning only, server ready.)
+## Completed Steps:
+- [x] Step 1: Update .gitignore with SWC specifics
+- [x] Step 2: Install git-filter-repo
+- [x] Step 3: Remove node_modules from Git history (using git-filter-repo --path node_modules/ --invert-paths --force)
+- [x] Step 4: Clean local node_modules/.next (Remove-Item running, removing ~28k files / 452MB)
 
-- [x] 4. Fix SWC binary error by adding `.babelrc` to opt-out and fallback to Babel. (Added .babelrc)
+## Pending Steps:
+- [ ] Step 5: Reinstall npm deps (`npm install`)
+- [ ] Step 6: Re-add origin remote (`git remote add origin https://github.com/Qurbanali123/MedRcmX-Solutions.git`) & force-push (`git push --force-with-lease`)
+- [ ] Step 7: Test `npm run dev` / `npm run build`
 
-## Status: Task complete! Original error resolved. SWC binary issue bypassed using Babel. Run `npm run dev` again.
+**Progress:** Git history cleaned (large SWC files gone). Local cleanup in progress. Repo size reduced significantly.

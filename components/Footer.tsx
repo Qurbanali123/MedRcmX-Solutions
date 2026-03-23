@@ -176,7 +176,7 @@ export default function Footer() {
                 <div>
                   <div className="text-xs text-white/40 mb-0.5 font-bold">Email</div>
                   <a href="mailto:info@medrcmx.com" className="text-white/70 hover:text-emerald text-sm transition-colors font-semibold">
-                    info@medrcmx.com
+                    info@medrcmxsolutions.com
                   </a>
                 </div>
               </li>

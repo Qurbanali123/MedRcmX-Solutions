@@ -22,11 +22,25 @@ const teamMembers = [
     image: "/f.png",
   },
   {
-    name: "Ahmed",
+    name: "Akbar",
     designation: "COO",
     role: "SEO Expert",
     bio: "RCM Expert and Virtual Assistant with strong experience in medical billing, revenue cycle management, and administrative support. Skilled in streamlining workflows, managing claims, and providing efficient virtual assistance to enhance productivity and ensure smooth business operations.",
     image: "/COO.jpeg",
+  },
+   {
+    name: "Shamshad Nazi",
+    designation: "Manager",
+    role: "Biller",
+    bio: "Professional medical biller ensuring accurate claims processing.",
+    image: "/manager.png",
+  },
+   {
+    name: "Kamran Nazir",
+    designation: "Team Lead",
+    role: "Medical Biller and Credentialing Specialist",
+    bio: "Medical Billing & Credentialing Team Lead with proven experience in managing end-to-end revenue cycle operations and provider credentialing processes. Skilled in leading teams, optimizing billing workflows, and ensuring accurate claim submissions, timely reimbursements, and compliance with healthcare regulations. Experienced in insurance verification, denial management, and maintaining strong relationships with payers. Adept at improving team performance, streamlining processes, and driving overall operational efficiency",
+    image: "/teamlead.jpeg",
   },
   {
     name: "Qurban Ali",
@@ -34,14 +48,8 @@ const teamMembers = [
     role: "Web Developer and SEO Expert",
     bio: "Website Developer and SEO Expert with expertise in building high-performing, user-friendly websites optimized for search engines. Skilled in improving website visibility, driving organic traffic, and creating responsive designs that deliver real business results.",
     image: "/Devloper.png",
-  },
-  {
-    name: "Hina Malik",
-    designation: "Manager",
-    role: "Biller",
-    bio: "Professional medical biller ensuring accurate claims processing.",
-    image: "/lady.jpg",
   }
+ 
 ];
 const milestones = [
   { year: "2018", title: "Founded", desc: "Started with a vision to simplify medical billing for independent practices." },
