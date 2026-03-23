@@ -24,7 +24,7 @@ const teamMembers = [
 {
   name: "Akbar Hussain",
   designation: "COO",
-  role: "SEO Expert",
+  role: "RCM Expert and Virtual Assistant",
   bio: "Experienced in medical billing and virtual assistance, focused on optimizing workflows and improving operational efficiency.",
   image: "/COO.jpeg",
 },
