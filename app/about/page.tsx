@@ -17,9 +17,9 @@ const teamMembers = [
   {
   name: "Mehfooz Hussain",
   designation: "Founder and CEO",
-  role: "RCM Expert and Credential Specialist",
+  role: "RCM Expert and Credentialing Specialist",
   bio: "RCM expert specializing in medical billing, coding, and provider credentialing with a focus on accuracy and efficient revenue cycle management.",
-  image: "/mehfoz.jpeg",
+  image: "/funderr.jpeg",
 },
 {
   name: "Akbar Hussain",
@@ -168,7 +168,7 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
             {[
-              { icon: TrendingUp, val: "$100M+", label: "Revenue Recovered" },
+              { icon: TrendingUp, val: "$30M+", label: "Revenue Recovered" },
               { icon: Users, val: "200+", label: "Providers Served" },
               { icon: Award, val: "8+", label: "Years Experience" },
               { icon: Star, val: "4.9/5", label: "Client Satisfaction" },
@@ -201,17 +201,10 @@ export default function AboutPage() {
                 <span className="gradient-text">Industry Leader</span>
               </h2>
               <p className="text-white/60 leading-relaxed mb-6">
-                MedRCMx Solutions was founded in 2018 by Dr. Michael Chen, who
-                experienced firsthand the frustration of revenue leakage while
-                running his own practice. He assembled a team of billing experts,
-                certified coders, and technology specialists to build a better
-                solution.
+               MedRCMx Solutions was founded in 2018 by Mehfooz Hussain. The company specializes in providing comprehensive revenue cycle management (RCM) solutions, including medical billing, credentialing, coding, and healthcare administrative services. By combining industry expertise with innovative technology, MedRCMx Solutions helps healthcare providers streamline operations, optimize revenue, and maintain compliance, delivering efficient and reliable services that drive growth and improve financial performance.
               </p>
               <p className="text-white/60 leading-relaxed mb-8">
-                Today, we proudly serve over 200 healthcare providers across
-                40+ specialties in all 50 states, processing millions of claims
-                annually with an industry-leading 98.2% first-pass clean claim
-                rate.
+               Today, we proudly serve over 200 healthcare providers across 40+ specialties in all 50 states, processing millions of claims annually with an industry-leading 98.2% first-pass clean claim rate.
               </p>
               <ul className="space-y-3">
                 {[
@@ -323,21 +316,36 @@ export default function AboutPage() {
         if (!el) return;
         let isDown = false;
         let startX = 0;
+        let startY = 0;
         let scrollLeft = 0;
+        let scrollTop = 0;
 
         const startDrag = (e: TouchEvent) => {
           isDown = true;
           startX = e.touches[0].pageX - (el as HTMLElement).offsetLeft;
+          startY = e.touches[0].pageY - (el as HTMLElement).offsetTop;
           scrollLeft = (el as HTMLElement).scrollLeft;
+          scrollTop = (el as HTMLElement).scrollTop;
           (el as HTMLElement).style.animationPlayState = 'paused';
         };
 
         const moveDrag = (e: TouchEvent) => {
           if (!isDown) return;
           e.preventDefault();
+
           const x = e.touches[0].pageX - (el as HTMLElement).offsetLeft;
-          const walk = (x - startX) * 1.5;
-          (el as HTMLElement).scrollLeft = scrollLeft - walk;
+          const y = e.touches[0].pageY - (el as HTMLElement).offsetTop;
+
+          const walkX = (x - startX) * 1.5;
+          const walkY = (y - startY) * 1.5;
+
+          if (window.innerWidth <= 640) {
+            // MOBILE: vertical scroll
+            (el as HTMLElement).scrollTop = scrollTop - walkY;
+          } else {
+            // DESKTOP: horizontal scroll
+            (el as HTMLElement).scrollLeft = scrollLeft - walkX;
+          }
         };
 
         const endDrag = () => {
@@ -385,11 +393,10 @@ export default function AboutPage() {
       animation: scroll 40s linear infinite;
     }
 
-    /* ✅ MOBILE ONLY */
     @media (max-width: 640px) {
       .scroll-wrapper {
         flex-direction: column !important;
-        align-items: center; /* center all cards */
+        align-items: center;
         animation: none !important;
         width: 100% !important;
         gap: 24px;
@@ -398,7 +405,7 @@ export default function AboutPage() {
       .team-card {
         width: 90% !important;
         max-width: 320px;
-        margin: 0 auto; /* center the first and all cards */
+        margin: 0 auto;
         opacity: 0;
         transform: translateY(40px) scale(0.95);
         animation: cardFadeUp 0.6s ease forwards;
@@ -412,14 +419,8 @@ export default function AboutPage() {
       .team-card:nth-child(5) { animation-delay: 0.5s; }
 
       @keyframes cardFadeUp {
-        from {
-          opacity: 0;
-          transform: translateY(40px) scale(0.95);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0) scale(1);
-        }
+        from { opacity: 0; transform: translateY(40px) scale(0.95); }
+        to { opacity: 1; transform: translateY(0) scale(1); }
       }
     }
 
