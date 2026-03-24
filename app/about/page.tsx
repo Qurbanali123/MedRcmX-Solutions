@@ -285,7 +285,7 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-<section className="py-20 overflow-hidden relative">
+<section className="py-20 relative">
   {/* Header */}
   <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-10">
     <h2
@@ -300,128 +300,67 @@ export default function AboutPage() {
   </div>
 
   {/* Cards */}
-  <div
-    className="relative w-full flex justify-center"
-    onMouseEnter={(e) => {
-      const el = e.currentTarget.querySelector('.scroll-wrapper') as HTMLElement;
-      if (el && window.innerWidth <= 640) el.style.animationPlayState = 'paused';
-    }}
-    onMouseLeave={(e) => {
-      const el = e.currentTarget.querySelector('.scroll-wrapper') as HTMLElement;
-      if (el && window.innerWidth <= 640) el.style.animationPlayState = 'running';
-    }}
-  >
-    <div className="relative w-full max-w-7xl flex justify-start">
-      {/* Cards Wrapper */}
-      <div
-        className="scroll-wrapper flex flex-col sm:flex-row space-y-6 sm:space-y-0 sm:space-x-6 w-full sm:overflow-x-visible overflow-y-auto"
-        style={{ maxHeight: '80vh' }}
-        ref={(el) => {
-          if (!el) return;
-          let isDown = false;
-          let startY = 0;
-          let scrollTop = 0;
-
-          const startDrag = (e: TouchEvent) => {
-            if (window.innerWidth > 640) return;
-            isDown = true;
-            startY = e.touches[0].pageY - (el as HTMLElement).offsetTop;
-            scrollTop = (el as HTMLElement).scrollTop;
-          };
-
-          const moveDrag = (e: TouchEvent) => {
-            if (!isDown) return;
-            e.preventDefault();
-            const y = e.touches[0].pageY - (el as HTMLElement).offsetTop;
-            const walk = (y - startY) * 1.5;
-            (el as HTMLElement).scrollTop = scrollTop - walk;
-          };
-
-          const endDrag = () => { isDown = false; };
-
-          el.addEventListener('touchstart', startDrag, { passive: false });
-          el.addEventListener('touchmove', moveDrag, { passive: false });
-          el.addEventListener('touchend', endDrag);
-        }}
-      >
-        {teamMembers.map(({ name, designation, role, bio, image }, i) => (
-          <div
-            key={i}
-            className="team-card bg-[#091e35] rounded-3xl p-7 flex-shrink-0 shadow-[0_8px_25px_rgba(0,0,0,0.35)] hover:shadow-[0_12px_35px_rgba(0,0,255,0.25)] transition-all duration-300 mx-auto"
-          >
-            <div className="w-32 h-32 mx-auto mb-5 p-[3px] rounded-full bg-gradient-to-r from-blue-500 via-cyan-400 to-blue-600">
-              <img
-                src={image}
-                alt={name}
-                className="w-full h-full object-cover object-center rounded-full"
-              />
-            </div>
-            <h4 className="text-lg font-bold text-white mb-1 text-center">{name}</h4>
-            <div className="text-sm text-blue-400 font-semibold text-center">{designation}</div>
-            <div className="text-xs text-gray-300 mb-3 text-center">{role}</div>
-            <p className="text-sm text-white/60 leading-relaxed text-center">{bio}</p>
+  <div className="max-w-7xl mx-auto px-4 sm:px-0">
+    <div className="flex flex-col sm:flex-row sm:overflow-x-auto sm:space-x-6 gap-6">
+      {teamMembers.map(({ name, designation, role, bio, image }, i) => (
+        <div
+          key={i}
+          className="team-card bg-[#091e35] rounded-3xl p-7 flex-shrink-0 shadow-[0_8px_25px_rgba(0,0,0,0.35)] hover:shadow-[0_12px_35px_rgba(0,0,255,0.25)] transition-all duration-300 mx-auto"
+        >
+          <div className="w-32 h-32 mx-auto mb-5 p-[3px] rounded-full bg-gradient-to-r from-blue-500 via-cyan-400 to-blue-600">
+            <img
+              src={image}
+              alt={name}
+              className="w-full h-full object-cover object-center rounded-full"
+            />
           </div>
-        ))}
-      </div>
+          <h4 className="text-lg font-bold text-white mb-1 text-center">{name}</h4>
+          <div className="text-sm text-blue-400 font-semibold text-center">{designation}</div>
+          <div className="text-xs text-gray-300 mb-3 text-center">{role}</div>
+          <p className="text-sm text-white/60 leading-relaxed text-center">{bio}</p>
+        </div>
+      ))}
     </div>
   </div>
 
   <style jsx>{`
-    /* REMOVE slide animation on desktop */
-    .scroll-wrapper {
-      display: flex;
-      scroll-behavior: smooth;
+    .team-card {
+      width: 300px; /* default for desktop */
+      max-width: 90%;
+      margin: 0 auto;
+      opacity: 0;
+      transform: translateY(40px) scale(0.95);
+      animation: cardFadeUp 0.6s ease forwards;
     }
 
-    /* MOBILE ONLY */
+    .team-card:nth-child(1) { animation-delay: 0.1s; }
+    .team-card:nth-child(2) { animation-delay: 0.2s; }
+    .team-card:nth-child(3) { animation-delay: 0.3s; }
+    .team-card:nth-child(4) { animation-delay: 0.4s; }
+    .team-card:nth-child(5) { animation-delay: 0.5s; }
+
+    @keyframes cardFadeUp {
+      from { opacity: 0; transform: translateY(40px) scale(0.95); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    /* MOBILE: slightly wider stacked cards */
     @media (max-width: 640px) {
-      .scroll-wrapper {
-        flex-direction: column;
-        align-items: center;    
-        animation: none;
-        width: 100%;
-        overflow-x: hidden;
-        overflow-y: auto;
-        max-height: 80vh;
-        -webkit-overflow-scrolling: touch;
-        gap: 24px;
-        padding-right: 16px;    
-
-        /* HIDE vertical scrollbar / arrow */
-        scrollbar-width: none; /* Firefox */
-      }
-
-      .scroll-wrapper::-webkit-scrollbar {
-        display: none; /* Chrome, Safari, Opera */
-      }
-
       .team-card {
-        width: 90%;
-        max-width: 320px;
+        width: 90%;       /* slightly wider than before */
+        max-width: 400px; /* increase max width */
         margin: 0 auto;
-        opacity: 0;
-        transform: translateY(40px) scale(0.95);
-        animation: cardFadeUp 0.6s ease forwards;
-      }
-
-      .team-card:nth-child(1) { animation-delay: 0.1s; }
-      .team-card:nth-child(2) { animation-delay: 0.2s; }
-      .team-card:nth-child(3) { animation-delay: 0.3s; }
-      .team-card:nth-child(4) { animation-delay: 0.4s; }
-      .team-card:nth-child(5) { animation-delay: 0.5s; }
-
-      @keyframes cardFadeUp {
-        from { opacity: 0; transform: translateY(40px) scale(0.95); }
-        to { opacity: 1; transform: translateY(0) scale(1); }
       }
     }
 
+    /* TABLET */
     @media (min-width: 641px) and (max-width: 1024px) {
       .team-card { width: 260px; }
     }
 
+    /* DESKTOP */
     @media (min-width: 1025px) {
-      .team-card { width: 300px; }
+      .team-card { width: 350px; }
     }
   `}</style>
 </section>
