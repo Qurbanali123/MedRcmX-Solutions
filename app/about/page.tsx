@@ -31,7 +31,7 @@ const teamMembers = [
 {
   name: "Shamshad Nazi",
   role: "Virtual Assistant",
-  bio: "HR professional skilled in team leadership, recruitment, and improving organizational performance.",
+  bio: "Experienced Virtual Assistant skilled in managing schedules, client communication, and streamlining workflows.",
   image: "/manager.png",
 },
 {
