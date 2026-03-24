@@ -325,24 +325,24 @@ export default function AboutPage() {
         let startX = 0;
         let scrollLeft = 0;
 
-        const startDrag = (e) => {
+        const startDrag = (e: TouchEvent) => {
           isDown = true;
-          startX = e.touches[0].pageX - el.offsetLeft;
-          scrollLeft = el.scrollLeft;
-          el.style.animationPlayState = 'paused';
+          startX = e.touches[0].pageX - (el as HTMLElement).offsetLeft;
+          scrollLeft = (el as HTMLElement).scrollLeft;
+          (el as HTMLElement).style.animationPlayState = 'paused';
         };
 
-        const moveDrag = (e) => {
+        const moveDrag = (e: TouchEvent) => {
           if (!isDown) return;
           e.preventDefault();
-          const x = e.touches[0].pageX - el.offsetLeft;
+          const x = e.touches[0].pageX - (el as HTMLElement).offsetLeft;
           const walk = (x - startX) * 1.5;
-          el.scrollLeft = scrollLeft - walk;
+          (el as HTMLElement).scrollLeft = scrollLeft - walk;
         };
 
         const endDrag = () => {
           isDown = false;
-          el.style.animationPlayState = 'running';
+          (el as HTMLElement).style.animationPlayState = 'running';
         };
 
         el.addEventListener('touchstart', startDrag, { passive: false });
