@@ -285,7 +285,8 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-<section className="py-20 overflow-hidden">
+<section className="py-20 overflow-hidden relative">
+  {/* Header */}
   <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-10">
     <h2
       className="text-4xl md:text-5xl font-black mb-2 gradient-text"
@@ -298,118 +299,102 @@ export default function AboutPage() {
     </p>
   </div>
 
+  {/* Cards */}
   <div
-    className="relative w-full overflow-hidden"
+    className="relative w-full flex justify-center"
     onMouseEnter={(e) => {
       const el = e.currentTarget.querySelector('.scroll-wrapper') as HTMLElement;
-      if (el) el.style.animationPlayState = 'paused';
+      if (el && window.innerWidth <= 640) el.style.animationPlayState = 'paused';
     }}
     onMouseLeave={(e) => {
       const el = e.currentTarget.querySelector('.scroll-wrapper') as HTMLElement;
-      if (el) el.style.animationPlayState = 'running';
+      if (el && window.innerWidth <= 640) el.style.animationPlayState = 'running';
     }}
   >
-    <div
-      className="scroll-wrapper flex space-x-6"
-      style={{ width: 'max-content' }}
-      ref={(el) => {
-        if (!el) return;
-        let isDown = false;
-        let startX = 0;
-        let startY = 0;
-        let scrollLeft = 0;
-        let scrollTop = 0;
+    <div className="relative w-full max-w-7xl flex justify-start">
+      {/* Cards Wrapper */}
+      <div
+        className="scroll-wrapper flex flex-col sm:flex-row space-y-6 sm:space-y-0 sm:space-x-6 w-full sm:overflow-x-visible overflow-y-auto"
+        style={{ maxHeight: '80vh' }}
+        ref={(el) => {
+          if (!el) return;
+          let isDown = false;
+          let startY = 0;
+          let scrollTop = 0;
 
-        const startDrag = (e: TouchEvent) => {
-          isDown = true;
-          startX = e.touches[0].pageX - (el as HTMLElement).offsetLeft;
-          startY = e.touches[0].pageY - (el as HTMLElement).offsetTop;
-          scrollLeft = (el as HTMLElement).scrollLeft;
-          scrollTop = (el as HTMLElement).scrollTop;
-          (el as HTMLElement).style.animationPlayState = 'paused';
-        };
+          const startDrag = (e: TouchEvent) => {
+            if (window.innerWidth > 640) return;
+            isDown = true;
+            startY = e.touches[0].pageY - (el as HTMLElement).offsetTop;
+            scrollTop = (el as HTMLElement).scrollTop;
+          };
 
-        const moveDrag = (e: TouchEvent) => {
-          if (!isDown) return;
-          e.preventDefault();
+          const moveDrag = (e: TouchEvent) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const y = e.touches[0].pageY - (el as HTMLElement).offsetTop;
+            const walk = (y - startY) * 1.5;
+            (el as HTMLElement).scrollTop = scrollTop - walk;
+          };
 
-          const x = e.touches[0].pageX - (el as HTMLElement).offsetLeft;
-          const y = e.touches[0].pageY - (el as HTMLElement).offsetTop;
+          const endDrag = () => { isDown = false; };
 
-          const walkX = (x - startX) * 1.5;
-          const walkY = (y - startY) * 1.5;
-
-          if (window.innerWidth <= 640) {
-            // MOBILE: vertical scroll
-            (el as HTMLElement).scrollTop = scrollTop - walkY;
-          } else {
-            // DESKTOP: horizontal scroll
-            (el as HTMLElement).scrollLeft = scrollLeft - walkX;
-          }
-        };
-
-        const endDrag = () => {
-          isDown = false;
-          (el as HTMLElement).style.animationPlayState = 'running';
-        };
-
-        el.addEventListener('touchstart', startDrag, { passive: false });
-        el.addEventListener('touchmove', moveDrag, { passive: false });
-        el.addEventListener('touchend', endDrag);
-      }}
-    >
-      {(typeof window !== "undefined" && window.innerWidth <= 640
-        ? teamMembers
-        : teamMembers.concat(teamMembers)
-      ).map(({ name, designation, role, bio, image }, i) => (
-        <div
-          key={i}
-          className="team-card bg-[#091e35] rounded-3xl p-7 flex-shrink-0 shadow-[0_8px_25px_rgba(0,0,0,0.35)] hover:shadow-[0_12px_35px_rgba(0,0,255,0.25)] transition-all duration-300"
-        >
-          <div className="w-32 h-32 mx-auto mb-5 p-[3px] rounded-full bg-gradient-to-r from-blue-500 via-cyan-400 to-blue-600">
-            <img
-              src={image}
-              alt={name}
-              className="w-full h-full object-cover object-center rounded-full"
-            />
+          el.addEventListener('touchstart', startDrag, { passive: false });
+          el.addEventListener('touchmove', moveDrag, { passive: false });
+          el.addEventListener('touchend', endDrag);
+        }}
+      >
+        {teamMembers.map(({ name, designation, role, bio, image }, i) => (
+          <div
+            key={i}
+            className="team-card bg-[#091e35] rounded-3xl p-7 flex-shrink-0 shadow-[0_8px_25px_rgba(0,0,0,0.35)] hover:shadow-[0_12px_35px_rgba(0,0,255,0.25)] transition-all duration-300 mx-auto"
+          >
+            <div className="w-32 h-32 mx-auto mb-5 p-[3px] rounded-full bg-gradient-to-r from-blue-500 via-cyan-400 to-blue-600">
+              <img
+                src={image}
+                alt={name}
+                className="w-full h-full object-cover object-center rounded-full"
+              />
+            </div>
+            <h4 className="text-lg font-bold text-white mb-1 text-center">{name}</h4>
+            <div className="text-sm text-blue-400 font-semibold text-center">{designation}</div>
+            <div className="text-xs text-gray-300 mb-3 text-center">{role}</div>
+            <p className="text-sm text-white/60 leading-relaxed text-center">{bio}</p>
           </div>
-          <h4 className="text-lg font-bold text-white mb-1 text-center">{name}</h4>
-          <div className="text-sm text-blue-400 font-semibold text-center">{designation}</div>
-          <div className="text-xs text-gray-300 mb-3 text-center">{role}</div>
-          <p className="text-sm text-white/60 leading-relaxed text-center">{bio}</p>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   </div>
 
   <style jsx>{`
-    @keyframes scroll {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-
+    /* REMOVE slide animation on desktop */
     .scroll-wrapper {
       display: flex;
-      animation: scroll 40s linear infinite;
+      scroll-behavior: smooth;
     }
 
+    /* MOBILE ONLY */
     @media (max-width: 640px) {
       .scroll-wrapper {
-        flex-direction: column !important;
-        align-items: center;
-        animation: none !important;
-        width: 100% !important;
+        flex-direction: column;
+        align-items: center;    
+        animation: none;
+        width: 100%;
+        overflow-x: hidden;
+        overflow-y: auto;
+        max-height: 80vh;
+        -webkit-overflow-scrolling: touch;
         gap: 24px;
+        padding-right: 16px;    
       }
 
       .team-card {
-        width: 90% !important;
+        width: 90%;
         max-width: 320px;
         margin: 0 auto;
         opacity: 0;
         transform: translateY(40px) scale(0.95);
         animation: cardFadeUp 0.6s ease forwards;
-        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
       }
 
       .team-card:nth-child(1) { animation-delay: 0.1s; }
