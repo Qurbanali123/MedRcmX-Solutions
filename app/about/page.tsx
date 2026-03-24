@@ -15,7 +15,7 @@ import {
 
 const teamMembers = [
   {
-  name: "Mehfooz",
+  name: "Mehfooz Hussain",
   designation: "Founder and CEO",
   role: "RCM Expert and Credential Specialist",
   bio: "RCM expert specializing in medical billing, coding, and provider credentialing with a focus on accuracy and efficient revenue cycle management.",
