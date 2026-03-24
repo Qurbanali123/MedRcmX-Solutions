@@ -321,8 +321,8 @@ const services = [
 ];
 
 const stats = [
-  { icon: DollarSign, value: 200, suffix: "M+", label: "Revenue Collected" },
-  { icon: Users, value: 1200, suffix: "+", label: "Providers Served" },
+  { icon: DollarSign, value: 100, suffix: "M+", label: "Revenue Collected" },
+  { icon: Users, value: 200, suffix: "+", label: "Providers Served" },
   { icon: TrendingUp, value: 98, suffix: "%", label: "Clean Claim Rate" },
   { icon: Award, value: 8, suffix: "+", label: "Years Experience" },
 ];
@@ -447,7 +447,7 @@ export default function HomePage() {
               <div className="flex flex-wrap gap-8 pt-4 border-t border-white/10 ">
                 {[
                   { val: "98%", label: "Collection Rate" },
-                  { val: "$200M+", label: "Revenue Managed" },
+                  { val: "$100M+", label: "Revenue Managed" },
                   { val: "24hr", label: "Claim Turnaround" },
                 ].map((s, i) => (
                   <div key={i}>
@@ -671,7 +671,7 @@ export default function HomePage() {
               >
                 Trusted by
                 <br />
-                <span className="gradient-text">1,200+ Healthcare</span>
+                <span className="gradient-text">200+ Healthcare</span>
                 <br />
                 Providers
               </h2>

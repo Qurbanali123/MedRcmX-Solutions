@@ -19,7 +19,7 @@ const teamMembers = [
   designation: "Founder and CEO",
   role: "RCM Expert and Credential Specialist",
   bio: "RCM expert specializing in medical billing, coding, and provider credentialing with a focus on accuracy and efficient revenue cycle management.",
-  image: "/f.png",
+  image: "/mehfoz.jpeg",
 },
 {
   name: "Akbar Hussain",
@@ -30,21 +30,24 @@ const teamMembers = [
 },
 {
   name: "Shamshad Nazi",
-  designation: "Manager",
-  role: "HR and Management",
+  role: "Virtual Assistant",
   bio: "HR professional skilled in team leadership, recruitment, and improving organizational performance.",
   image: "/manager.png",
 },
 {
+  name: "Nosheen Kanwal",
+  role: "Social Media Marketer",
+  bio: "A skilled marketer who creates engaging content and strategies to drive growth. Excels in campaign management and audience engagement with a data-driven approach",
+  image: "/marketer.jpeg",
+},
+{
   name: "Kamran Nazir",
-  designation: "Team Lead",
   role: "Medical Biller and Credentialing Specialist",
-  bio: "Team lead with expertise in billing, credentialing, and ensuring accurate claims with strong compliance standards.",
+  bio: "Leadership skill with expertise in billing, credentialing, and ensuring accurate claims with strong compliance standards.",
   image: "/team.png",
 },
 {
   name: "Qurban Ali",
-  designation: "Developer",
   role: "Web Developer and SEO Expert",
   bio: "Web developer focused on building responsive websites and improving SEO for better visibility and performance.",
   image: "/Devloper.png",
@@ -53,10 +56,10 @@ const teamMembers = [
 ];
 const milestones = [
   { year: "2018", title: "Founded", desc: "Started with a vision to simplify medical billing for independent practices." },
-  { year: "2020", title: "100 Clients", desc: "Reached our first major milestone serving 100+ healthcare providers." },
+  { year: "2020", title: "40 Clients", desc: "Reached our first major milestone serving 40+ healthcare providers." },
   { year: "20222", title: "Tech Platform", desc: "Launched proprietary RCM platform with real-time analytics." },
-  { year: "2023", title: "HIPAA 5010", desc: "Achieved full compliance with enhanced HIPAA EDI standards." },
-  { year: "20225", title: "1,000+ Clients", desc: "Serving over 1,000 providers nationwide across all specialties." },
+  { year: "2025", title: "HIPAA 5010", desc: "Achieved full compliance with enhanced HIPAA EDI standards." },
+  { year: "2025", title: "100+ Clients", desc: "Serving over 100 providers nationwide across all specialties." },
   { year: "2026", title: "AI Integration", desc: "Integrated AI-powered coding and claim scrubbing technology." },
 ];
 
@@ -95,10 +98,10 @@ export default function AboutPage() {
         className="relative py-24 overflow-hidden section-bg-image"
         style={{ backgroundImage: "url('https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80&w=2070')" }}
       >
-        <div className="bg-overlay" />
+        <div className="" />
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="tag-pill inline-block px-3 py-1 rounded-full mb-6 bg-emerald/10 text-emerald font-bold">
+          <div className="tag-pill inline-block px-3 py-1 rounded-full mb-6 bg-emerald/20 text-emerald font-bold">
             ABOUT US
           </div>
           <h1
@@ -165,8 +168,8 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
             {[
-              { icon: TrendingUp, val: "$200M+", label: "Revenue Recovered" },
-              { icon: Users, val: "1,200+", label: "Providers Served" },
+              { icon: TrendingUp, val: "$100M+", label: "Revenue Recovered" },
+              { icon: Users, val: "200+", label: "Providers Served" },
               { icon: Award, val: "8+", label: "Years Experience" },
               { icon: Star, val: "4.9/5", label: "Client Satisfaction" },
             ].map(({ icon: Icon, val, label }, i) => (
@@ -205,7 +208,7 @@ export default function AboutPage() {
                 solution.
               </p>
               <p className="text-white/60 leading-relaxed mb-8">
-                Today, we proudly serve over 1,200 healthcare providers across
+                Today, we proudly serve over 200 healthcare providers across
                 40+ specialties in all 50 states, processing millions of claims
                 annually with an industry-leading 98.2% first-pass clean claim
                 rate.
@@ -305,11 +308,11 @@ export default function AboutPage() {
   <div
     className="relative w-full overflow-hidden"
     onMouseEnter={(e) => {
-      const el = e.currentTarget.querySelector('.scroll-wrapper') as HTMLElement | null;
+      const el = e.currentTarget.querySelector('.scroll-wrapper');
       if (el) el.style.animationPlayState = 'paused';
     }}
     onMouseLeave={(e) => {
-      const el = e.currentTarget.querySelector('.scroll-wrapper') as HTMLElement | null;
+      const el = e.currentTarget.querySelector('.scroll-wrapper');
       if (el) el.style.animationPlayState = 'running';
     }}
   >
@@ -322,14 +325,14 @@ export default function AboutPage() {
         let startX = 0;
         let scrollLeft = 0;
 
-        const startDrag = (e: TouchEvent) => {
+        const startDrag = (e) => {
           isDown = true;
           startX = e.touches[0].pageX - el.offsetLeft;
           scrollLeft = el.scrollLeft;
           el.style.animationPlayState = 'paused';
         };
 
-        const moveDrag = (e: TouchEvent) => {
+        const moveDrag = (e) => {
           if (!isDown) return;
           e.preventDefault();
           const x = e.touches[0].pageX - el.offsetLeft;
@@ -347,21 +350,19 @@ export default function AboutPage() {
         el.addEventListener('touchend', endDrag);
       }}
     >
-      {teamMembers.concat(teamMembers).map(({ name, designation, role, bio, image }, i) => (
+      {(typeof window !== "undefined" && window.innerWidth <= 640
+        ? teamMembers
+        : teamMembers.concat(teamMembers)
+      ).map(({ name, designation, role, bio, image }, i) => (
         <div
           key={i}
-          className="team-card bg-[#091e35] rounded-3xl p-7 flex-shrink-0 w-[300px] sm:w-[260px] xs:w-[220px] shadow-[0_8px_25px_rgba(0,0,0,0.35)] hover:shadow-[0_12px_35px_rgba(0,150,255,0.25)] transition-all duration-300"
+          className="team-card bg-[#091e35] rounded-3xl p-7 flex-shrink-0 shadow-[0_8px_25px_rgba(0,0,0,0.35)] hover:shadow-[0_12px_35px_rgba(0,0,255,0.25)] transition-all duration-300"
         >
           <div className="w-32 h-32 mx-auto mb-5 p-[3px] rounded-full bg-gradient-to-r from-blue-500 via-cyan-400 to-blue-600">
             <img
               src={image}
               alt={name}
               className="w-full h-full object-cover object-center rounded-full"
-              style={{
-                imageRendering: 'auto',
-                WebkitBackfaceVisibility: 'hidden',
-                transform: 'translateZ(0)',
-              }}
             />
           </div>
           <h4 className="text-lg font-bold text-white mb-1 text-center">{name}</h4>
@@ -375,12 +376,8 @@ export default function AboutPage() {
 
   <style jsx>{`
     @keyframes scroll {
-      0% {
-        transform: translateX(0);
-      }
-      100% {
-        transform: translateX(-50%);
-      }
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
     }
 
     .scroll-wrapper {
@@ -388,26 +385,50 @@ export default function AboutPage() {
       animation: scroll 40s linear infinite;
     }
 
-    /* Mobile faster scroll */
+    /* ✅ MOBILE ONLY */
     @media (max-width: 640px) {
       .scroll-wrapper {
-        animation: scroll 20s linear infinite;
+        flex-direction: column !important;
+        align-items: center; /* center all cards */
+        animation: none !important;
+        width: 100% !important;
+        gap: 24px;
       }
+
       .team-card {
-        width: 220px;
+        width: 90% !important;
+        max-width: 320px;
+        margin: 0 auto; /* center the first and all cards */
+        opacity: 0;
+        transform: translateY(40px) scale(0.95);
+        animation: cardFadeUp 0.6s ease forwards;
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+      }
+
+      .team-card:nth-child(1) { animation-delay: 0.1s; }
+      .team-card:nth-child(2) { animation-delay: 0.2s; }
+      .team-card:nth-child(3) { animation-delay: 0.3s; }
+      .team-card:nth-child(4) { animation-delay: 0.4s; }
+      .team-card:nth-child(5) { animation-delay: 0.5s; }
+
+      @keyframes cardFadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(40px) scale(0.95);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
       }
     }
 
     @media (min-width: 641px) and (max-width: 1024px) {
-      .team-card {
-        width: 260px;
-      }
+      .team-card { width: 260px; }
     }
 
     @media (min-width: 1025px) {
-      .team-card {
-        width: 300px;
-      }
+      .team-card { width: 300px; }
     }
   `}</style>
 </section>
@@ -417,7 +438,7 @@ export default function AboutPage() {
           <h2 className="text-3xl md:text-4xl font-black mb-4" style={{ fontFamily: "Syne, sans-serif" }}>
             Partner with <span className="gradient-text">MedRCMx</span> Today
           </h2>
-          <p className="text-white/50 mb-8">Join 1,200+ healthcare providers maximizing their revenue.</p>
+          <p className="text-white/50 mb-8">Join 200+ healthcare providers maximizing their revenue.</p>
           <Link
             href="/contact"
             className="btn-primary px-10 py-4 rounded-2xl text-base inline-flex items-center gap-2 group"
