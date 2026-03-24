@@ -57,7 +57,7 @@ const teamMembers = [
 const milestones = [
   { year: "2018", title: "Founded", desc: "Started with a vision to simplify medical billing for independent practices." },
   { year: "2020", title: "40 Clients", desc: "Reached our first major milestone serving 40+ healthcare providers." },
-  { year: "20222", title: "Tech Platform", desc: "Launched proprietary RCM platform with real-time analytics." },
+  { year: "2022", title: "Tech Platform", desc: "Launched proprietary RCM platform with real-time analytics." },
   { year: "2025", title: "HIPAA 5010", desc: "Achieved full compliance with enhanced HIPAA EDI standards." },
   { year: "2025", title: "100+ Clients", desc: "Serving over 100 providers nationwide across all specialties." },
   { year: "2026", title: "AI Integration", desc: "Integrated AI-powered coding and claim scrubbing technology." },
