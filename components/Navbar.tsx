@@ -47,8 +47,7 @@ export default function Navbar() {
                 className="w-48 sm:w-64 md:w-80 object-contain transition-all duration-300 group-hover:scale-105"
                 priority
               />
-              {/* Optional glowing dot */}
-              <div className="absolute -top-1 -right-1 w-3 h-3 bg-emerald rounded-full animate-pulse" />
+             
             </div>
           </Link>
 

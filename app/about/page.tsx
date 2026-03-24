@@ -386,6 +386,13 @@ export default function AboutPage() {
         -webkit-overflow-scrolling: touch;
         gap: 24px;
         padding-right: 16px;    
+
+        /* HIDE vertical scrollbar / arrow */
+        scrollbar-width: none; /* Firefox */
+      }
+
+      .scroll-wrapper::-webkit-scrollbar {
+        display: none; /* Chrome, Safari, Opera */
       }
 
       .team-card {
