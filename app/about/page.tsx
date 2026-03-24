@@ -308,11 +308,11 @@ export default function AboutPage() {
   <div
     className="relative w-full overflow-hidden"
     onMouseEnter={(e) => {
-      const el = e.currentTarget.querySelector('.scroll-wrapper');
+      const el = e.currentTarget.querySelector('.scroll-wrapper') as HTMLElement;
       if (el) el.style.animationPlayState = 'paused';
     }}
     onMouseLeave={(e) => {
-      const el = e.currentTarget.querySelector('.scroll-wrapper');
+      const el = e.currentTarget.querySelector('.scroll-wrapper') as HTMLElement;
       if (el) el.style.animationPlayState = 'running';
     }}
   >
