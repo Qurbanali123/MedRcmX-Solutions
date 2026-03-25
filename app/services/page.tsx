@@ -431,13 +431,15 @@ export default function ServicesPage() {
               <span>Free Consultation</span>
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Link>
-            <a
-              href="tel:+923405565214"
-              className="btn-outline px-8 py-4 rounded-2xl text-base inline-flex items-center gap-2"
-            >
-              <Phone className="w-5 h-5" />
-              <span>+92 3405565214</span>
-            </a>
+           <a
+  href="https://wa.me/923405565214"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="btn-outline px-8 py-4 rounded-2xl text-base inline-flex items-center gap-2"
+>
+  <Phone className="w-5 h-5" />
+  <span>+92 3405565214</span>
+</a>
           </div>
         </div>
       </section>

@@ -580,12 +580,11 @@ export default function HomePage() {
       <section
         className="py-20 relative overflow-hidden section-bg-image"
         style={{
-          backgroundImage:
-            "url('doc.jpg')",
+          backgroundImage: "url('doc.jpg')",
         }}
-      > 
-          <div className="absolute inset-0 bg-black/40"></div>
-          <div className="bg-overlay" />
+      >
+        <div className="absolute inset-0 bg-black/40"></div>
+        <div className="bg-overlay" />
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             {/* Left – Visual */}
@@ -826,10 +825,12 @@ export default function HomePage() {
                 </Link>
 
                 <a
-                  href="tel:+923405565214"
+                  href="https://wa.me/923405565214"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="px-8 py-4 rounded-2xl text-base flex items-center gap-2 
-            border border-white/20 text-white hover:bg-white/10 
-            transition-all duration-300"
+                  border border-white/20 text-white hover:bg-white/10 
+                  transition-all duration-300"
                 >
                   Call Us Now
                 </a>
