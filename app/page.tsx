@@ -826,7 +826,7 @@ export default function HomePage() {
                 </Link>
 
                 <a
-                  href="tel:+15551234567"
+                  href="tel:+923405565214"
                   className="px-8 py-4 rounded-2xl text-base flex items-center gap-2 
             border border-white/20 text-white hover:bg-white/10 
             transition-all duration-300"

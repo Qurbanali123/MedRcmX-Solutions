@@ -432,11 +432,11 @@ export default function ServicesPage() {
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Link>
             <a
-              href="tel:+15551234567"
+              href="tel:+923405565214"
               className="btn-outline px-8 py-4 rounded-2xl text-base inline-flex items-center gap-2"
             >
               <Phone className="w-5 h-5" />
-              <span>+1 (555) 123-4567</span>
+              <span>+92 3405565214</span>
             </a>
           </div>
         </div>
